@@ -1,0 +1,20 @@
+JC = javac
+RUN = java
+RMRF = rm -rf
+
+build:
+	find -name "*.java" > javaSources
+	mkdir bin
+	$(JC) @javaSources -d bin
+
+run:
+	$(RUN) -cp bin TestProject
+
+doc:
+	$(RMRF) docs
+	mkdir docs
+	javadoc -d docs -sourcepath src -subpackages implementation nodes
+
+clean:
+	$(RMRF) output
+	$(RMRF) bin
